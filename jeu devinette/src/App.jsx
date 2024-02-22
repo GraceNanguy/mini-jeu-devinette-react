@@ -1,27 +1,27 @@
 import React, { useState } from 'react';
 
 function App() {
-  // État pour stocker le nombre aléatoire généré
+  //variable pour stocker le nombre aléatoire généré donné par l'ordi
   const [nombreAleatoire] = useState(genererNombreAleatoire());
 
-  // État pour stocker la tentative actuelle
+  //variable pour stocker la tentative actuelle
   const [essai, setEssai] = useState('');
 
-  // État pour stocker le nombre de tentatives restantes
+  //variable pour stocker le nombre de tentatives restantes
   const [tentativesRestantes, setTentativesRestantes] = useState(3);
 
-  // État pour stocker si le jeu est terminé ou non
+  // variable pour stocker si le jeu est terminé ou non
   const [partieTerminee, setPartieTerminee] = useState(false);
 
-  // État pour stocker le message de comparaison
+  //variable pour stocker le message de comparaison(le nombre est plus petit ou plus grand)
   const [messageComparaison, setMessageComparaison] = useState('');
 
-  // Fonction pour générer un nombre aléatoire entre 1 et 100
+  // Fonction qui gère un nombre aléatoire entre 1 et 100
   function genererNombreAleatoire() {
     return Math.floor(Math.random() * 100) + 1;
   }
 
-  // Fonction pour gérer la soumission du formulaire de devinette
+  // Fonction qui gère la soumission du formulaire de devinette
   function gererSoumission(event) {
     event.preventDefault();
     
@@ -57,14 +57,7 @@ function App() {
       {!partieTerminee && (
         <form onSubmit={gererSoumission}>
           <div className="input-container"> 
-            <input 
-              type="number" 
-              value={essai} 
-              onChange={(event) => setEssai(event.target.value)}
-              min="1"
-              max="100"
-              required
-            />
+    <input type="number" value={essai} onChange={(event) => setEssai(event.target.value)}min="1" max="100"required/>
             <button type="submit">Soumettre mon choix</button>
           </div>
         </form>
