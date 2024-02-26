@@ -8,7 +8,7 @@ function App() {
   const [essai, setEssai] = useState('');
 
   //variable pour stocker le nombre de tentatives restantes
-  const [tentativesRestantes, setTentativesRestantes] = useState(3);
+  const [tentativesRestantes, setTentativesRestantes] = useState(5); 
 
   // variable pour stocker si le jeu est terminé ou non
   const [partieTerminee, setPartieTerminee] = useState(false);
@@ -24,6 +24,12 @@ function App() {
   // Fonction qui gère la soumission du formulaire de devinette
   function gererSoumission(event) {
     event.preventDefault();
+    
+    // Vérifier si la saisie est un nombre
+    if (!/^\d+$/.test(essai)) {
+      alert('Veuillez entrer un nombre valide.');
+      return;
+    }
     
     // Convertir la saisie de l'utilisateur en nombre entier
     const essaiUtilisateur = parseInt(essai, 10);
@@ -52,12 +58,12 @@ function App() {
     <div className="App">
       <h1>Jeu de devinette</h1>
       <p>Devinez un nombre entre 1 et 100.</p>
-      { tentativesRestantes !== 3 && !partieTerminee && <p>Tentatives Restantes : {tentativesRestantes}</p> }
+      { tentativesRestantes !== 5 && !partieTerminee && <p>Tentatives Restantes : {tentativesRestantes}</p> } {/* Modifier ici */}
       {messageComparaison && <p>{messageComparaison}</p>}
       {!partieTerminee && (
         <form onSubmit={gererSoumission}>
           <div className="input-container"> 
-    <input type="number" value={essai} onChange={(event) => setEssai(event.target.value)}min="1" max="100"required/>
+            <input type="text" value={essai} onChange={(event) => setEssai(event.target.value)} required />
             <button type="submit">Soumettre mon choix</button>
           </div>
         </form>
